@@ -1,0 +1,49 @@
+function genere_enonce( enonce_string, indice_lecture )
+
+	st1 <- null
+	st2 <- null
+	variables <- null
+	type_enonce <- null
+	
+	tant que l'indice de fin n'est pas égal à la taille de la chaine ET qu'on ne lit pas un parenthese de fin
+	
+		char = enonce_string[indice_lecture]
+		On incremente indice_lecture
+		
+		Si char est une parenthese 
+			Si st1 == null
+				st1 <- genere_enonce( enonce_string, indice_lecture )
+			Sinon 
+				st2 <- genere_enonce( enonce_string, indice_lecture )
+		
+
+		SINON Si char est de type Exist ou All
+			Si symbole de type Exist
+				type_enonce <- Exist
+			Sinon
+				type_enonce <- All
+			Fin Si
+			variables <- une nouvelle liste de variables
+			Tant qu'on lit un charactere ou une virgule
+				Si il s'agit d'un charactere 
+					on crée une variable pour ce charactere
+					on ajoute la variable dans la liste
+				Fin si
+				On incremente indice_lecture
+			Fin Tant que
+			st1 <- genere_enonce( enonce_string, indice_lecture )
+		Fin si
+		
+		SINON char est de type Not
+			 type_enonce <- Not
+		
+	fin tan que
+	
+	On incremente indice_lecture
+	
+	on genere l'enonce en fonction du type et des enonce st1 et st2
+	
+retourne enonce		
+	
+
+	

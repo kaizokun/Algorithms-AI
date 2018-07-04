@@ -1,0 +1,148 @@
+function charger_symboles_fonctionnels(enonce_string, indice_lecture)
+
+	liste_termes <- nouvelle liste
+
+	tant que on ne lit pas un parenthese de fin 
+		
+		char = enonce_string[indice_lecture]
+		On incremente indice_lecture
+		
+		Si char est une parenthese de depart
+			sous_liste_de_terme <- function charger_symboles_fonctionnels(enonce_string, indice_lecture)
+			//ajoutela sous liste de terme à la fonction precedemment créée
+			liste_terms.last.ajout(sous_liste_de_terme)
+		
+		Sinon Si char est une lettre majuscule
+		
+			//onlit une constante (terme) ou un symbole fonctionelle (terme composé)
+			
+			label <- ""
+			ajout de char au label
+			
+			tant qu'on ne lit pas une parenthese ouvrante ou une virgule
+				char = enonce_string[indice_lecture]
+				On incremente indice_lecture
+				ajout de char au label	
+			fin tant que
+			
+			liste_termes.ajout( new fonctionalSymbol(label))	
+			
+		Sinon Si char est une minuscule
+			//on cree la variable
+			liste_termes.ajout( new Variable(char))	
+			//on passe la virgule
+			On incremente indice_lecture
+		Fin si	
+		
+	fin tant que
+	
+	//on passe la parenthese fermante
+	On incremente indice_lecture
+	
+	retourne liste_termes
+	
+FIN function 	
+	
+
+function genere_enonce( enonce_string, indice_lecture )
+
+	statement <- null
+	st1 <- null
+	st2 <- null
+	
+	negSt1 <- faux
+	negSt2 <- faux
+
+	
+	tant que l'indice de fin n'est pas égal à la taille de la chaine ET qu'on ne lit pas un parenthese de fin
+	
+		char = enonce_string[indice_lecture]
+		On incremente indice_lecture
+		
+		Si char est une parenthese de depart
+			Si st1 == null
+				st1 <- genere_enonce( enonce_string, indice_lecture )
+			Sinon 
+				st2 <- genere_enonce( enonce_string, indice_lecture )
+			Fin Si
+		
+		Sinon Si char == ( Exist ou All )
+			Si symbole de type Exist
+				statement <- new Exist
+			Sinon
+				statement <- new All
+			Fin Si
+			
+			//on lit obligatoirement une parenthese ouvrante pour les variables du quantificateur
+			On incremente indice_lecture
+			
+			liste_de_variables <- charger_symboles_fonctionnels(enonce_string, indice_lecture)
+			
+			statement.variables <- liste_de_variables
+			
+		Sinon Si char == Not
+			Si st1 == null
+				negSt1 <- vrai
+			Sinon
+				negSt2 <- vrai
+			Fin Si 
+			
+		Sinon Si char = ( DOUBLE_IMPLY ou IMPLY ou AND ou OU )
+			statement <- nouveau statement approprié
+		
+		
+		Sinon Si char est une lettre majuscule
+			//on a un symbole de predicat
+		
+			label <- ""
+			ajouter le char à label
+			tant qu'on ne lit pas une parenthese ouvrante	
+				char = enonce_string[indice_lecture]
+				On incremente indice_lecture
+				ajouter le char à label
+			fin tant que
+		
+			Si st1 == null
+				st1 <- new Predicate(label)
+			Sinon
+				st2 <- new Predicate(label)
+			
+			//passer la parenthese ouvrante	
+			On incremente indice_lecture
+			
+			liste de symboles fonctionnnels <- charger_symboles_fonctionnels(enonce_string, indice_lecture)
+			ajouter la liste de symbole fonctionelle composite au prédicat
+			
+		Fin Si
+		
+	fin tant que
+	
+	On incremente indice_lecture
+	
+	Si statement de type expression_à_un_enonce
+	
+		statement.st1 <- st1
+		
+		Si negSt1
+			statement <- new Not(statement)
+		Fin Si
+		
+	Sinon Si statement de type expressin_à_deux_enonce
+	
+		Si negSt1
+			st1 <- new Not(st1)
+		Fin Si
+		
+		Si negSt2
+			st1 <- new Not(st2)
+		Fin Si	
+		
+		statement.st1 <- st1
+		statement-st2 <- st2
+		
+	Fin Si
+	
+retourne statement		
+	
+
+	
