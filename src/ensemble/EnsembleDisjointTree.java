@@ -1,4 +1,4 @@
-package mylib.ensemble;
+package ensemble;
 
 import java.util.LinkedList;
 

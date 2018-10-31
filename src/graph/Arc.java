@@ -1,4 +1,4 @@
-package mylib.graph;
+package graph;
 
 import java.util.Comparator;
 

@@ -1,4 +1,4 @@
-package mylib.tas;
+package tas;
 
 /**
  * Created by monsio on 3/23/16.

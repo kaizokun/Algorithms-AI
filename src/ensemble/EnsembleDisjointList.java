@@ -1,6 +1,6 @@
-package mylib.ensemble;
+package ensemble;
 
-import mylib.list.MyLinkedList;
+import list.MyLinkedList;
 
 import java.util.Iterator;
 

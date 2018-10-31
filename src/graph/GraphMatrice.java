@@ -1,4 +1,4 @@
-package mylib.graph;
+package graph;
 
 /**
  * Created by monsio on 05/07/16.

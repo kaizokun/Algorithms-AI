@@ -1,7 +1,7 @@
-package mylib.graph;
+package graph;
 
-import mylib.ensemble.ElementListe;
-import mylib.ensemble.ElementTree;
+import ensemble.ElementListe;
+import ensemble.ElementTree;
 import mylib.tas.Handle;
 
 import java.util.LinkedList;

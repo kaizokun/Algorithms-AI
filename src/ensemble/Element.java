@@ -1,4 +1,4 @@
-package mylib.ensemble;
+package ensemble;
 
 /**
  * Created by monsio on 15/07/16.

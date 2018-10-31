@@ -1,6 +1,6 @@
-package mylib.graph;
+package graph;
 
-import mylib.ensemble.EnsembleDisjointTree;
+import ensemble.EnsembleDisjointTree;
 import mylib.tas.TasMin;
 
 import java.util.*;

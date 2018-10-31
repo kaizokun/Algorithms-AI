@@ -1,4 +1,4 @@
-package mylib.tas;
+package tas;
 
 
 import java.util.*;

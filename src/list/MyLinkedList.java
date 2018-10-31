@@ -1,11 +1,11 @@
-package mylib.list;
+package list;
 
 import java.util.*;
 
 /**
  * Created by monsio on 13/07/16.
  */
-public class MyLinkedList<T> implements List<T>,Iterator<T> {
+public class MyLinkedList<T> implements List<T>, Iterator<T> {
 
 
     private Node<T> nil, cursor;
@@ -17,16 +17,17 @@ public class MyLinkedList<T> implements List<T>,Iterator<T> {
         this.nil.setPrevious(this.nil);
     }
 
+
     @Override
     public int size() {
         return this.size;
     }
 
-    public T getLast(){
+    public T getLast() {
         return this.nil.next.key;
     }
 
-    public T getFirst(){
+    public T getFirst() {
         return this.nil.previous.key;
     }
 
@@ -35,11 +36,11 @@ public class MyLinkedList<T> implements List<T>,Iterator<T> {
         return this.size == 0 && this.nil.next.equals(nil) && this.nil.previous.equals(nil);
     }
 
-    private Node<T> search(Object o){
+    private Node<T> search(Object o) {
 
         Node<T> current = nil.next;
 
-        while( !current.equals(nil) && !current.key.equals(o)  ){
+        while (!current.equals(nil) && !current.key.equals(o)) {
             current = current.next;
         }
 
@@ -49,7 +50,7 @@ public class MyLinkedList<T> implements List<T>,Iterator<T> {
 
     @Override
     public boolean contains(Object o) {
-        return this.search(o).key != null ;
+        return this.search(o).key != null;
     }
 
     @Override
@@ -65,7 +66,7 @@ public class MyLinkedList<T> implements List<T>,Iterator<T> {
 
         Iterator it = this.iterator();
         int i = 0;
-        while(it.hasNext()){
+        while (it.hasNext()) {
             tab[i++] = it.next();
         }
         return tab;
@@ -86,11 +87,11 @@ public class MyLinkedList<T> implements List<T>,Iterator<T> {
             nil.next.setPrevious(n);
             n.setPrevious(nil);
             nil.setNext(n);
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
 
-        this.size ++;
+        this.size++;
 
         return true;
 
@@ -101,7 +102,7 @@ public class MyLinkedList<T> implements List<T>,Iterator<T> {
 
         Node<T> n = search(o);
 
-        if(n.key == null)
+        if (n.key == null)
             return false;
 
         n.previous.next = n.next;
@@ -128,7 +129,7 @@ public class MyLinkedList<T> implements List<T>,Iterator<T> {
                 this.add((T) it.next());
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
 
@@ -144,7 +145,7 @@ public class MyLinkedList<T> implements List<T>,Iterator<T> {
                 this.add(v);
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
 
@@ -154,10 +155,10 @@ public class MyLinkedList<T> implements List<T>,Iterator<T> {
     /**
      * append directly the entire collection
      * complexity : O(1)
-     * **/
-    public void append(MyLinkedList<T> l2){
+     **/
+    public void append(MyLinkedList<T> l2) {
 
-        if(l2.size > 0 ) {
+        if (l2.size > 0) {
             l2.nil.previous.next = this.nil.next;
             this.nil.next.previous = l2.nil.previous;
             l2.nil.next.previous = this.nil;
@@ -254,7 +255,12 @@ public class MyLinkedList<T> implements List<T>,Iterator<T> {
         return this.cursor.key;
     }
 
-    private class Node<T>{
+    @Override
+    public void remove() {
+
+    }
+
+    private class Node<T> {
 
         private T key;
         private Node<T> previous, next;
@@ -275,26 +281,26 @@ public class MyLinkedList<T> implements List<T>,Iterator<T> {
     public static void main(String[] args) {
 
         MyLinkedList l1 = new MyLinkedList(),
-                     l2 = new MyLinkedList();
+                l2 = new MyLinkedList();
 
-        Integer[] v1 = new Integer[]{1,2,3,4};
-        Integer[] v2 = new Integer[]{5,6,7,8,9,10};
+        Integer[] v1 = new Integer[]{1, 2, 3, 4};
+        Integer[] v2 = new Integer[]{5, 6, 7, 8, 9, 10};
 
         l1.addAll(v1);
         l2.addAll(v2);
 
         Iterator it = l1.iterator();
 
-        while(it.hasNext()){
-            System.out.print(it.next()+" ");
+        while (it.hasNext()) {
+            System.out.print(it.next() + " ");
         }
 
         System.out.println();
 
         it = l2.iterator();
 
-        while(it.hasNext()){
-            System.out.print(it.next()+" ");
+        while (it.hasNext()) {
+            System.out.print(it.next() + " ");
         }
 
         System.out.println();
@@ -303,8 +309,8 @@ public class MyLinkedList<T> implements List<T>,Iterator<T> {
 
         it = l1.iterator();
 
-        while(it.hasNext()){
-            System.out.print(it.next()+" ");
+        while (it.hasNext()) {
+            System.out.print(it.next() + " ");
         }
 
     }
