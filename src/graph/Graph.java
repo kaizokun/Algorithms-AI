@@ -1,7 +1,7 @@
 package graph;
 
 import ensemble.EnsembleDisjointTree;
-import mylib.tas.TasMin;
+import tas.TasMin;
 
 import java.util.*;
 
@@ -208,7 +208,7 @@ public class Graph implements ItGraph{
 
                     Sommet top = pile.getLast();
 
-                    String id =  exercicesFranceIoi.util.Util.getIdent(top.getLastProfondeur());
+                    String id =  util.Util.getIdent(top.getLastProfondeur());
 
                     if( !top.isVisite() ) {
 

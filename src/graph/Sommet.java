@@ -2,7 +2,7 @@ package graph;
 
 import ensemble.ElementListe;
 import ensemble.ElementTree;
-import mylib.tas.Handle;
+import tas.Handle;
 
 import java.util.LinkedList;
 import java.util.List;
